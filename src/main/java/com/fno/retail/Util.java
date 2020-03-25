@@ -10,12 +10,17 @@ import static java.util.Calendar.*;
 
 public class Util {
 
-
+    /**
+     * Return the years between the dates
+     * @param first the earlier date
+     * @param last the later date
+     * @return
+     */
     public static int getDiffYears(Date first, Date last) {
-        Calendar a = getCalendar(first);
-        Calendar b = getCalendar(last);
-        int diff = b.get(YEAR) - a.get(YEAR);
-        if (a.get(MONTH) > b.get(MONTH) || (a.get(MONTH) == b.get(MONTH) && a.get(DATE) > b.get(DATE))) {
+        Calendar firstCalendar = getCalendar(first);
+        Calendar lastCalendar = getCalendar(last);
+        int diff = lastCalendar.get(YEAR) - firstCalendar.get(YEAR);
+        if (firstCalendar.get(MONTH) > lastCalendar.get(MONTH) || (firstCalendar.get(MONTH) == lastCalendar.get(MONTH) && firstCalendar.get(DATE) > lastCalendar.get(DATE))) {
             diff--;
         }
         return diff;
