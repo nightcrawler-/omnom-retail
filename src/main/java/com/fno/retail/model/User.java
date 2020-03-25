@@ -1,10 +1,13 @@
 package com.fno.retail.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.fno.retail.Util;
-import net.minidev.json.annotate.JsonIgnore;
 
 import java.util.Date;
 
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class User {
 
     private static double FACTOR = 100;
@@ -58,7 +61,6 @@ public class User {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
-
 
     public double getNetPayableAmount() {
         double payableOnPercent = bill - (getDiscountPercentage()/100 * bill);
