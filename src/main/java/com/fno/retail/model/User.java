@@ -1,0 +1,70 @@
+package com.fno.retail.model;
+
+import com.fno.retail.Util;
+import net.minidev.json.annotate.JsonIgnore;
+
+import java.util.Date;
+
+public class User {
+
+    private static double FACTOR = 100;
+
+    private static double DISCOUNT_FOR_EVERY_HUNDRED = 5;
+
+    private String name;
+
+    @JsonIgnore
+    private Date registrationDate;
+
+    @JsonIgnore
+    private float discountPercentage = 0;
+
+    @JsonIgnore
+    private double bill;
+
+    private double payableAmount;
+
+    public User(String name, Date registrationDate, double bill) {
+        this.name = name;
+        this.registrationDate = registrationDate;
+        this.bill = bill;
+    }
+
+    @JsonIgnore
+    public float getDiscountPercentage() {
+        if (Util.getDiffYears(registrationDate, new Date()) >= 2) {
+            return 5;
+        }
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(float discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JsonIgnore
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+
+    public double getNetPayableAmount() {
+        double payableOnPercent = bill - (getDiscountPercentage()/100 * bill);
+        double billDiscount = Math.floor(bill / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
+        payableAmount =  payableOnPercent - billDiscount;
+        return payableAmount;
+    }
+
+}
