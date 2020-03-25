@@ -1,5 +1,6 @@
 package com.fno.retail.controller;
 
+import com.fno.retail.Util;
 import com.fno.retail.model.Affiliate;
 import com.fno.retail.model.Employee;
 import com.fno.retail.model.User;
@@ -15,25 +16,17 @@ import java.util.List;
 public class RetailController {
 
 
-    @RequestMapping(path = "/discount", method = RequestMethod.GET)
-    public List<User> getDiscount(double bill) {
-        //return all user types with net payable?
+    @RequestMapping(path = "/net-payable", method = RequestMethod.GET)
+    public List<User> getNetPayableAmounts(double bill) {
 
         List<User> results = new ArrayList<>();
 
         results.add(new Employee("Employee", new Date(), bill));
         results.add(new Affiliate("Affiliate", new Date(), bill));
         results.add(new User("User - Recent", new Date(), bill));
-        results.add(new User("User - + 2 years", olderThanTwoYears(), bill));
+        results.add(new User("User - + 2 years", Util.olderThanTwoYears(), bill));
 
         return results;
     }
-
-    private Date olderThanTwoYears() {
-        Date then = new Date();
-        then.setTime(2 * 370 * 24 * 60 * 60 * 1000);
-        return then;
-
-    }
-
+    
 }

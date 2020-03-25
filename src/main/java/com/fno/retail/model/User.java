@@ -20,7 +20,7 @@ public class User {
     private Date registrationDate;
 
     @JsonIgnore
-    private float discountPercentage = 0;
+    private double discountPercentage = 0;
 
     @JsonIgnore
     private double bill;
@@ -34,7 +34,7 @@ public class User {
     }
 
     @JsonIgnore
-    public float getDiscountPercentage() {
+    public double getDiscountPercentage() {
         if (Util.getDiffYears(registrationDate, new Date()) >= 2) {
             return 5;
         }

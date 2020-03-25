@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Employee extends User {
 
-    private static final float DISCOUNT = 30;
+    private static final double DISCOUNT = 30;
 
     public Employee(String name, Date registrationDare, double bill) {
         super(name, registrationDare, bill);
@@ -12,7 +12,7 @@ public class Employee extends User {
 
 
     @Override
-    public float getDiscountPercentage() {
+    public double getDiscountPercentage() {
         return DISCOUNT;
     }
 }

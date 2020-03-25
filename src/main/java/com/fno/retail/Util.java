@@ -24,4 +24,12 @@ public class Util {
         cal.setTime(date);
         return cal;
     }
+
+    //Used specifically to generate a veteran user
+    public static Date olderThanTwoYears() {
+        Date then = new Date();
+        then.setTime(2 * 370 * 24 * 60 * 60 * 1000);
+        return then;
+
+    }
 }
