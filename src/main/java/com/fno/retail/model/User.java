@@ -7,6 +7,9 @@ import com.fno.retail.Util;
 
 import java.util.Date;
 
+/**
+ * This is the base customer/user class that defines a standard user
+ */
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class User {
 

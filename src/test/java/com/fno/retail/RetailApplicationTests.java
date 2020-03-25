@@ -12,6 +12,7 @@ class RetailApplicationTests {
 
     @Test
     void main() {
+    	//This test is essentially to increase the coverage metrics, is not really necessary
         RetailApplication.main(new String[]{""});
     }
 
