@@ -41,25 +41,8 @@ public class User {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(float discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @JsonIgnore
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
     }
 
     public double getNetPayableAmount() {
@@ -68,5 +51,4 @@ public class User {
         payableAmount =  payableOnPercent - billDiscount;
         return payableAmount;
     }
-
 }

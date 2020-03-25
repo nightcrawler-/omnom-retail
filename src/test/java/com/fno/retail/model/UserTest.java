@@ -34,6 +34,12 @@ class UserTest {
         assertEquals(900, veteran.getNetPayableAmount());
     }
 
+    @Test
+    void getName() {
+        assertEquals("User - + 2 years", veteran.getName());
+        assertEquals("User - Recent", recent.getName());
+    }
+
     private static User buildUsers(Boolean veteran, double bill) {
         if (veteran) {
             return new User("User - + 2 years", olderThanTwoYears(), bill);

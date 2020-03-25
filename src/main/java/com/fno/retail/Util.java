@@ -1,8 +1,10 @@
 package com.fno.retail;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import com.fno.retail.model.Affiliate;
+import com.fno.retail.model.Employee;
+import com.fno.retail.model.User;
+
+import java.util.*;
 
 import static java.util.Calendar.*;
 
@@ -31,5 +33,16 @@ public class Util {
         then.setTime(2 * 370 * 24 * 60 * 60 * 1000);
         return then;
 
+    }
+
+    public static List<User> generateResults(double bill){
+        List<User> results = new ArrayList<>();
+
+        results.add(new Employee("Employee", new Date(), bill));
+        results.add(new Affiliate("Affiliate", new Date(), bill));
+        results.add(new User("User - Recent", new Date(), bill));
+        results.add(new User("User - + 2 years", Util.olderThanTwoYears(), bill));
+
+        return results;
     }
 }

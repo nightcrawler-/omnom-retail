@@ -6,8 +6,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class RetailApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
+
+    @Test
+    void main() {
+        RetailApplication.main(new String[]{""});
+    }
 
 }
