@@ -13,6 +13,9 @@ import java.util.Date;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class User {
 
+    /**
+     * The amount on every bill that is discounted
+     */
     private static double FACTOR = 100;
 
     private static double DISCOUNT_FOR_EVERY_HUNDRED = 5;
