@@ -11,10 +11,9 @@ import java.util.List;
 @RestController
 public class RetailController {
 
-
     @RequestMapping(path = "/net-payable", method = RequestMethod.GET)
-    public List<User> getNetPayableAmounts(double bill) {
-        return Util.generateResults(bill);
+    public List<User> getNetPayableAmounts(double totalBillAmount, double groceriesAmount) {
+        return Util.generateResults(totalBillAmount, groceriesAmount);
     }
     
 }

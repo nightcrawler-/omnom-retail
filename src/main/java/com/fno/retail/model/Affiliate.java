@@ -6,8 +6,8 @@ public class Affiliate extends User {
 
     private static final double DISCOUNT = 10;
 
-    public Affiliate(String name, Date registrationDare, double bill) {
-        super(name, registrationDare, bill);
+    public Affiliate(String name, Date registrationDate, double totalBillAmount, double groceriesAmount) {
+        super(name, registrationDate, totalBillAmount, groceriesAmount);
     }
 
     @Override

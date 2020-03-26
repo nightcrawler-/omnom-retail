@@ -10,12 +10,17 @@ import static java.util.Calendar.*;
 
 public class Util {
 
-
+    /**
+     * Return the years between the dates
+     * @param first the earlier date
+     * @param last the later date
+     * @return
+     */
     public static int getDiffYears(Date first, Date last) {
-        Calendar a = getCalendar(first);
-        Calendar b = getCalendar(last);
-        int diff = b.get(YEAR) - a.get(YEAR);
-        if (a.get(MONTH) > b.get(MONTH) || (a.get(MONTH) == b.get(MONTH) && a.get(DATE) > b.get(DATE))) {
+        Calendar firstCalendar = getCalendar(first);
+        Calendar lastCalendar = getCalendar(last);
+        int diff = lastCalendar.get(YEAR) - firstCalendar.get(YEAR);
+        if (firstCalendar.get(MONTH) > lastCalendar.get(MONTH) || (firstCalendar.get(MONTH) == lastCalendar.get(MONTH) && firstCalendar.get(DATE) > lastCalendar.get(DATE))) {
             diff--;
         }
         return diff;
@@ -35,13 +40,13 @@ public class Util {
 
     }
 
-    public static List<User> generateResults(double bill){
+    public static List<User> generateResults(double totalBillAmount, double groceriesAmount){
         List<User> results = new ArrayList<>();
 
-        results.add(new Employee("Employee", new Date(), bill));
-        results.add(new Affiliate("Affiliate", new Date(), bill));
-        results.add(new User("User - Recent", new Date(), bill));
-        results.add(new User("User - + 2 years", Util.olderThanTwoYears(), bill));
+        results.add(new Employee("Employee", new Date(), totalBillAmount, groceriesAmount));
+        results.add(new Affiliate("Affiliate", new Date(), totalBillAmount, groceriesAmount));
+        results.add(new User("User - Recent", new Date(), totalBillAmount, groceriesAmount));
+        results.add(new User("User - + 2 years", Util.olderThanTwoYears(), totalBillAmount, groceriesAmount));
 
         return results;
     }

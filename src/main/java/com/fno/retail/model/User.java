@@ -13,6 +13,9 @@ import java.util.Date;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class User {
 
+    /**
+     * The amount on every bill that is discounted
+     */
     private static double FACTOR = 100;
 
     private static double DISCOUNT_FOR_EVERY_HUNDRED = 5;
@@ -26,14 +29,22 @@ public class User {
     private double discountPercentage = 0;
 
     @JsonIgnore
-    private double bill;
+    private double totalBillAmount;
+
+    @JsonIgnore
+    private double groceriesAmount;
 
     private double payableAmount;
 
-    public User(String name, Date registrationDate, double bill) {
+    public User(String name, Date registrationDate, double totalBillAmount, double groceriesAmount) {
         this.name = name;
         this.registrationDate = registrationDate;
-        this.bill = bill;
+        this.totalBillAmount = totalBillAmount;
+        this.groceriesAmount = groceriesAmount;
+
+        if (groceriesAmount > totalBillAmount) {
+            throw new RuntimeException("Groceries amount should not exceed the total bill amount");
+        }
     }
 
     @JsonIgnore
@@ -49,9 +60,18 @@ public class User {
     }
 
     public double getNetPayableAmount() {
-        double payableOnPercent = bill - (getDiscountPercentage()/100 * bill);
-        double billDiscount = Math.floor(bill / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
-        payableAmount =  payableOnPercent - billDiscount;
+        //Get discounted amount on percent
+        //Get discountent amount every 100
+        //Subtract the sum of the above two from the total bill
+
+        double discountOnPercent = (getDiscountPercentage() / 100 * getAmountWithPercentDiscount());
+        double billDiscount = Math.floor(totalBillAmount / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
+
+        payableAmount = totalBillAmount - (discountOnPercent + billDiscount);
         return payableAmount;
+    }
+
+    private double getAmountWithPercentDiscount() {
+        return totalBillAmount - groceriesAmount;
     }
 }

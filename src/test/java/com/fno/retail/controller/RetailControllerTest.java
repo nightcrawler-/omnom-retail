@@ -28,9 +28,11 @@ class RetailControllerTest {
     @Test
     void getNetPayableAmounts() throws Exception {
 
-        MvcResult mvcResult = mockMvc.perform(get("/net-payable").param("bill", "1000")).andExpect(status().isOk()).andReturn();
+        MvcResult mvcResult = mockMvc.perform(get("/net-payable")
+                .param("totalBillAmount", "1000")
+                .param("groceriesAmount", "0")).andExpect(status().isOk()).andReturn();
 
-        List<User> expected = Util.generateResults(1000);
+        List<User> expected = Util.generateResults(1000, 0);
         List<User> actualResponseBody = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), List.class);
 
         List<User> response = objectMapper.convertValue(actualResponseBody, new TypeReference<List<User>>() {
