@@ -39,7 +39,7 @@ public class User {
         this.totalBillAmount = totalBillAmount;
         this.groceriesAmount = groceriesAmount;
 
-        if(groceriesAmount > totalBillAmount){
+        if (groceriesAmount > totalBillAmount) {
             throw new RuntimeException("Groceries amount should not exceed the total bill amount");
         }
     }
@@ -57,9 +57,14 @@ public class User {
     }
 
     public double getNetPayableAmount() {
-        double payableOnPercent = getAmountWithPercentDiscount() - (getDiscountPercentage()/100 * getAmountWithPercentDiscount());
+        //Get discounted amount on percent
+        //Get discountent amount every 100
+        //Subtract the sum of the above two from the total bill
+
+        double discountOnPercent = (getDiscountPercentage() / 100 * getAmountWithPercentDiscount());
         double billDiscount = Math.floor(totalBillAmount / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
-        payableAmount =  payableOnPercent - billDiscount;
+
+        payableAmount = totalBillAmount - (discountOnPercent + billDiscount);
         return payableAmount;
     }
 

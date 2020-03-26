@@ -14,11 +14,13 @@ class EmployeeTest {
 
     private static User veteran;
     private static User recent;
+    private static User veteranWithGroceries;
 
     @BeforeAll
     static void init() {
         recent = buildEmployees(false, 1000, 0);
         veteran = buildEmployees(true, 1000, 0);
+        veteranWithGroceries = buildEmployees(true, 1000, 500);
     }
 
     @Test
@@ -32,6 +34,7 @@ class EmployeeTest {
     void getNetPayableAmount() {
         assertEquals(650, recent.getNetPayableAmount());
         assertEquals(650, veteran.getNetPayableAmount());
+        assertEquals(800, veteranWithGroceries.getNetPayableAmount());
     }
 
     private static Employee buildEmployees(Boolean veteran, double totalBillAmount, double groceriesAmount) {
