@@ -3,6 +3,7 @@ package com.fno.retail.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fno.retail.Util;
+import com.fno.retail.model.Bill;
 import com.fno.retail.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = RetailController.class)
@@ -28,9 +29,9 @@ class RetailControllerTest {
     @Test
     void getNetPayableAmounts() throws Exception {
 
-        MvcResult mvcResult = mockMvc.perform(get("/net-payable").param("bill", "1000")).andExpect(status().isOk()).andReturn();
+        MvcResult mvcResult = mockMvc.perform(post("/net-payable").content(objectMapper.writeValueAsString(new Bill(0,1000)))).andExpect(status().isOk()).andReturn();
 
-        List<User> expected = Util.generateResults(1000);
+        List<User> expected = Util.generateResults(new Bill(0, 1000));
         List<User> actualResponseBody = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), List.class);
 
         List<User> response = objectMapper.convertValue(actualResponseBody, new TypeReference<List<User>>() {

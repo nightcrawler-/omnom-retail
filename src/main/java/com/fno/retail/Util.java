@@ -1,6 +1,7 @@
 package com.fno.retail;
 
 import com.fno.retail.model.Affiliate;
+import com.fno.retail.model.Bill;
 import com.fno.retail.model.Employee;
 import com.fno.retail.model.User;
 
@@ -40,7 +41,7 @@ public class Util {
 
     }
 
-    public static List<User> generateResults(double bill){
+    public static List<User> generateResults(Bill bill){
         List<User> results = new ArrayList<>();
 
         results.add(new Employee("Employee", new Date(), bill));

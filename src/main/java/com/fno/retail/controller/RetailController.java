@@ -1,10 +1,9 @@
 package com.fno.retail.controller;
 
 import com.fno.retail.Util;
+import com.fno.retail.model.Bill;
 import com.fno.retail.model.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,9 +11,10 @@ import java.util.List;
 public class RetailController {
 
 
-    @RequestMapping(path = "/net-payable", method = RequestMethod.GET)
-    public List<User> getNetPayableAmounts(double bill) {
+    @PostMapping(path = "/net-payable", headers="Accept=application/json")
+    public @ResponseBody
+    List<User> getNetPayableAmounts(@RequestBody Bill bill) {
         return Util.generateResults(bill);
     }
-    
+
 }

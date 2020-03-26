@@ -6,7 +6,7 @@ public class Affiliate extends User {
 
     private static final double DISCOUNT = 10;
 
-    public Affiliate(String name, Date registrationDare, double bill) {
+    public Affiliate(String name, Date registrationDare, Bill bill) {
         super(name, registrationDare, bill);
     }
 

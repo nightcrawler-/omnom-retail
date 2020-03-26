@@ -12,13 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class UserTest {
 
-    private static User veteran;
-    private static User recent;
+    static User veteran;
+    static User recent;
+    static Bill bill = new Bill(0, 1000);
 
     @BeforeAll
     static void init() {
-        recent = buildUsers(false, 1000);
-        veteran = buildUsers(true, 1000);
+        recent = buildUsers(false, bill);
+        veteran = buildUsers(true, bill);
     }
 
     @Test
@@ -40,7 +41,7 @@ class UserTest {
         assertEquals("User - Recent", recent.getName());
     }
 
-    private static User buildUsers(Boolean veteran, double bill) {
+    private static User buildUsers(Boolean veteran, Bill bill) {
         if (veteran) {
             return new User("User - + 2 years", olderThanTwoYears(), bill);
         }

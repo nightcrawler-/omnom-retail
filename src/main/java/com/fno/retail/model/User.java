@@ -26,11 +26,11 @@ public class User {
     private double discountPercentage = 0;
 
     @JsonIgnore
-    private double bill;
+    private Bill bill;
 
     private double payableAmount;
 
-    public User(String name, Date registrationDate, double bill) {
+    public User(String name, Date registrationDate, Bill bill) {
         this.name = name;
         this.registrationDate = registrationDate;
         this.bill = bill;
@@ -49,8 +49,8 @@ public class User {
     }
 
     public double getNetPayableAmount() {
-        double payableOnPercent = bill - (getDiscountPercentage()/100 * bill);
-        double billDiscount = Math.floor(bill / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
+        double payableOnPercent = bill.getPercentageBasedDiscountableAmount() - (getDiscountPercentage()/100 * bill.getPercentageBasedDiscountableAmount());
+        double billDiscount = Math.floor(bill.getTotalAmount() / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
         payableAmount =  payableOnPercent - billDiscount;
         return payableAmount;
     }

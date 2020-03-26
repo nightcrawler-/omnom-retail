@@ -6,7 +6,7 @@ public class Employee extends User {
 
     private static final double DISCOUNT = 30;
 
-    public Employee(String name, Date registrationDare, double bill) {
+    public Employee(String name, Date registrationDare, Bill bill) {
         super(name, registrationDare, bill);
     }
 
