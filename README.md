@@ -3,9 +3,15 @@
 [![CircleCI](https://circleci.com/gh/nightcrawler-/omnom-retail.svg?style=svg)](https://circleci.com/gh/nightcrawler-/omnom-retail)
 
 
-### Usage
+### Installation
 
 The instructions below apply to GNU/Linux Distributions, specifically Ubuntu
+
+#### Prerequisites
+
+* Java installed and configured correctly, gradle may be required as well
+
+#### Usage
 
 Download the zip file or clone the repository into a local folder
 
