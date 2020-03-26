@@ -26,14 +26,22 @@ public class User {
     private double discountPercentage = 0;
 
     @JsonIgnore
-    private double bill;
+    private double totalBillAmount;
+
+    @JsonIgnore
+    private double groceriesAmount;
 
     private double payableAmount;
 
-    public User(String name, Date registrationDate, double bill) {
+    public User(String name, Date registrationDate, double totalBillAmount, double groceriesAmount) {
         this.name = name;
         this.registrationDate = registrationDate;
-        this.bill = bill;
+        this.totalBillAmount = totalBillAmount;
+        this.groceriesAmount = groceriesAmount;
+
+        if(groceriesAmount > totalBillAmount){
+            throw new RuntimeException("Groceries amount should not exceed the total bill amount");
+        }
     }
 
     @JsonIgnore
@@ -49,9 +57,13 @@ public class User {
     }
 
     public double getNetPayableAmount() {
-        double payableOnPercent = bill - (getDiscountPercentage()/100 * bill);
-        double billDiscount = Math.floor(bill / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
+        double payableOnPercent = getAmountWithPercentDiscount() - (getDiscountPercentage()/100 * getAmountWithPercentDiscount());
+        double billDiscount = Math.floor(totalBillAmount / FACTOR) * DISCOUNT_FOR_EVERY_HUNDRED;
         payableAmount =  payableOnPercent - billDiscount;
         return payableAmount;
+    }
+
+    private double getAmountWithPercentDiscount() {
+        return totalBillAmount - groceriesAmount;
     }
 }

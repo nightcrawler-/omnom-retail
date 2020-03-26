@@ -40,13 +40,13 @@ public class Util {
 
     }
 
-    public static List<User> generateResults(double bill){
+    public static List<User> generateResults(double totalBillAmount, double groceriesAmount){
         List<User> results = new ArrayList<>();
 
-        results.add(new Employee("Employee", new Date(), bill));
-        results.add(new Affiliate("Affiliate", new Date(), bill));
-        results.add(new User("User - Recent", new Date(), bill));
-        results.add(new User("User - + 2 years", Util.olderThanTwoYears(), bill));
+        results.add(new Employee("Employee", new Date(), totalBillAmount, groceriesAmount));
+        results.add(new Affiliate("Affiliate", new Date(), totalBillAmount, groceriesAmount));
+        results.add(new User("User - Recent", new Date(), totalBillAmount, groceriesAmount));
+        results.add(new User("User - + 2 years", Util.olderThanTwoYears(), totalBillAmount, groceriesAmount));
 
         return results;
     }

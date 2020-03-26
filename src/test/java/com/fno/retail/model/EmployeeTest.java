@@ -17,8 +17,8 @@ class EmployeeTest {
 
     @BeforeAll
     static void init() {
-        recent = buildEmployees(false, 1000);
-        veteran = buildEmployees(true, 1000);
+        recent = buildEmployees(false, 1000, 0);
+        veteran = buildEmployees(true, 1000, 0);
     }
 
     @Test
@@ -33,10 +33,11 @@ class EmployeeTest {
         assertEquals(650, recent.getNetPayableAmount());
         assertEquals(650, veteran.getNetPayableAmount());
     }
-    private static Employee buildEmployees(Boolean veteran, double bill) {
+
+    private static Employee buildEmployees(Boolean veteran, double totalBillAmount, double groceriesAmount) {
         if (veteran) {
-            return new Employee("Employee - + 2 years", olderThanTwoYears(), bill);
+            return new Employee("Employee - + 2 years", olderThanTwoYears(), totalBillAmount, groceriesAmount);
         }
-        return new Employee("Employee - Recent", new Date(), bill);
+        return new Employee("Employee - Recent", new Date(), totalBillAmount, groceriesAmount);
     }
 }

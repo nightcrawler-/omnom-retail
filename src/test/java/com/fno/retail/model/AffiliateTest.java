@@ -17,8 +17,8 @@ class AffiliateTest {
 
     @BeforeAll
     static void init() {
-        recent = buildAffiliates(false, 1000);
-        veteran = buildAffiliates(true, 1000);
+        recent = buildAffiliates(false, 1000, 0);
+        veteran = buildAffiliates(true, 1000, 0);
     }
 
     @Test
@@ -33,10 +33,11 @@ class AffiliateTest {
         assertEquals(850, recent.getNetPayableAmount());
         assertEquals(850, veteran.getNetPayableAmount());
     }
-    private static Affiliate buildAffiliates(Boolean veteran, double bill) {
+
+    private static Affiliate buildAffiliates(Boolean veteran, double totalBillAmount, double groceriesAmount) {
         if (veteran) {
-            return new Affiliate("Employee - + 2 years", olderThanTwoYears(), bill);
+            return new Affiliate("Employee - + 2 years", olderThanTwoYears(), totalBillAmount, groceriesAmount);
         }
-        return new Affiliate("Employee - Recent", new Date(), bill);
+        return new Affiliate("Employee - Recent", new Date(), totalBillAmount, groceriesAmount);
     }
 }

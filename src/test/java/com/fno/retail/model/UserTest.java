@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Date;
 
 import static com.fno.retail.Util.olderThanTwoYears;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class UserTest {
@@ -17,8 +17,8 @@ class UserTest {
 
     @BeforeAll
     static void init() {
-        recent = buildUsers(false, 1000);
-        veteran = buildUsers(true, 1000);
+        recent = buildUsers(false, 1000, 0);
+        veteran = buildUsers(true, 1000, 0);
     }
 
     @Test
@@ -40,10 +40,18 @@ class UserTest {
         assertEquals("User - Recent", recent.getName());
     }
 
-    private static User buildUsers(Boolean veteran, double bill) {
+    @Test
+    void User() {
+        Exception ex = assertThrows(RuntimeException.class, () -> {
+            new User("User", new Date(), 0, 1000);
+        });
+        assertTrue(ex.getMessage().contains("Groceries amount should not exceed the total bill amount"));
+    }
+
+    private static User buildUsers(Boolean veteran, double totalBillAmount, double groceriesAmount) {
         if (veteran) {
-            return new User("User - + 2 years", olderThanTwoYears(), bill);
+            return new User("User - + 2 years", olderThanTwoYears(), totalBillAmount, groceriesAmount);
         }
-        return new User("User - Recent", new Date(), bill);
+        return new User("User - Recent", new Date(), totalBillAmount, groceriesAmount);
     }
 }
