@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/nightcrawler-/omnom-retail.svg?style=svg)](https://circleci.com/gh/nightcrawler-/omnom-retail)
 
+[UML available here](files/retail.pdf)
 
 ### Installation
 
@@ -88,3 +89,10 @@ RESPONSE:
   }
 ]
 ```
+
+#### UML for the key classes
+
+![User](files/model.png)
+![Employee](files/employee.png)
+![Affiliate](files/affiliate.png)
+
