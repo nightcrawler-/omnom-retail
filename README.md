@@ -18,6 +18,7 @@ Download the zip file or clone the repository into a local folder
 
 ```
 git clone https://github.com/nightcrawler-/omnom-retail.git
+
 cd omnom-retail
 
 ```
