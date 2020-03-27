@@ -20,7 +20,6 @@ Download the zip file or clone the repository into a local folder
 git clone https://github.com/nightcrawler-/omnom-retail.git
 
 cd omnom-retail
-
 ```
 
 Download the dependencies by running
@@ -43,7 +42,6 @@ To generate and view the coverage report, run the commands below
 ./gradlew jacocoTestReport
 
 xdg-open build/reports/coverage/index.html
-
 ```
 
 To build and run the application:
